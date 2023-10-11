@@ -1,8 +1,11 @@
-'use client'
-import Link from "next/link"
-import { navLinks } from "../utils/navLinks"
+'use client';
+import React, { useContext} from "react";
+import { Context } from "../context/context";
+import Link from "next/link";
+import { navLinks } from "../utils/navLinks";
 
 const Navbar = () => {
+    const { modalHandler } = useContext(Context);
   return (
     <header>
         <nav className="nav">
@@ -16,6 +19,7 @@ const Navbar = () => {
                         <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
                         <li><Link className="nav__link" href="/">CART(0)</Link></li>
                         <li><Link href="/">ACCOUNT</Link></li>
+                        <li onClick={()=>(modalHandler(true))}>SIGN IN</li>
                     </ul>
                 </div>
                 

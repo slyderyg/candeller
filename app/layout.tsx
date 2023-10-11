@@ -1,11 +1,7 @@
+'use client'
 import './globals.css'
-import type { Metadata } from 'next'
+import { ContextProvider } from './context/context'
 
-
-export const metadata: Metadata = {
-  title: 'Candeller',
-  description: 'Candeller - Candle Shop',
-}
 
 export default function RootLayout({
   children,
@@ -14,7 +10,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ContextProvider>
+        {children}
+        </ContextProvider>
+      </body>
     </html>
   )
 }
