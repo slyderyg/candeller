@@ -1,19 +1,32 @@
 'use client'
 import React, { createContext, useState } from "react";
 
-export const Context = createContext({modalActive: false, modalHandler: (isActive: boolean)=>{}});
+export const Context = createContext({
+    modalActive: false, 
+    modalHandler: (isActive: boolean)=>{},
+    isSignIn: true,
+    isSignInHandler: (isSignIn: boolean):void => {}
+});
 
 export const ContextProvider = ({children}: any) => {
-    //sign in modal window:
+    //modal window open/close state:
     const [modalActive, setModalActive] = useState(false);
-    const modalHandler = (isActive: boolean) => {setModalActive(isActive)};
+    const modalHandler = (isActive: boolean):void => {setModalActive(isActive)};
+    //------------------------------------------------------------------------
+
+    //modal window sign up/sign in state:
+    const [isSignIn, setIsSignIn] = useState(true);
+    const isSignInHandler = (isSignIn: boolean):void => {setIsSignIn(isSignIn)};
     //------------------------------------------------------------------------
 
 
 
-
-
-    return (<Context.Provider value={{modalActive, modalHandler}}>{ children }</Context.Provider>)
+    return (<Context.Provider value={{
+        modalActive, 
+        modalHandler, 
+        isSignIn, 
+        isSignInHandler
+    }}>{ children }</Context.Provider>)
 }
 
 

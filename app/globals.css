@@ -94,7 +94,24 @@
     padding: 20px;
     border-radius: 12px;
     background-color: white;
-   
+  }
+
+  .modal__xbutton__group {
+    height: 17px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .modal__xbutton {
+    background-color: transparent;
+    border: none;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .modal__xbutton:hover,
+  .modal__xbutton:focus {
+    transform: scale(1.5);
   }
 
   .form {
@@ -139,6 +156,10 @@
     border-bottom: 1px solid #2e2e2e;
   }
 
+  .button__group {
+    display: flex;
+    justify-content: space-between;
+  }
   .form__button {
     padding: 10px 20px;
     border: none;
@@ -153,6 +174,21 @@
   .form__button:focus,
   .form__button:hover {
     background-color: #575757;
+  }
+
+  .form__reg__button {
+    padding: 10px 20px;
+    border: none;
+    color: #575757;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  .form__reg__button:focus,
+  .form__reg__button:hover {
+    color: black;
   }
 
   .form__input:focus ~ .form__label,
