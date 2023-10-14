@@ -1,11 +1,15 @@
 'use client'
 import React, { createContext, useState } from "react";
+import {auth} from '../firebase.js';
+import { createUserWithEmailAndPassword, Auth, UserCredential } from "firebase/auth";
+
 
 export const Context = createContext({
     modalActive: false, 
     modalHandler: (isActive: boolean)=>{},
     isSignIn: true,
-    isSignInHandler: (isSignIn: boolean):void => {}
+    isSignInHandler: (isSignIn: boolean):void => {},
+    createUser:  (email: string, password: string ): void => {}
 });
 
 export const ContextProvider = ({children}: any) => {
@@ -19,13 +23,29 @@ export const ContextProvider = ({children}: any) => {
     const isSignInHandler = (isSignIn: boolean):void => {setIsSignIn(isSignIn)};
     //------------------------------------------------------------------------
 
+    //firebase function to create user
+    const createUser = (email: string, password: string ) => {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
+      setModalActive(false); 
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+    }
+    //------------------------------------------------------------------------
 
 
     return (<Context.Provider value={{
         modalActive, 
         modalHandler, 
         isSignIn, 
-        isSignInHandler
+        isSignInHandler,
+        createUser
     }}>{ children }</Context.Provider>)
 }
 

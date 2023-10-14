@@ -1,6 +1,7 @@
 'use client';
 
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC, useState, ChangeEvent, useContext } from 'react';
+import { Context } from '../context/context';
 
 interface ModalProps {
   isSignInHandler: (isSignIn: boolean) => void;
@@ -8,44 +9,49 @@ interface ModalProps {
 
 const SignUpForm: FC<ModalProps> = ({ isSignInHandler }) => {
 
-const [modalEmail, setModalEmail] = useState('');
-const [modalPassword, setModalPassword] = useState('');
-const [modalPasswordRepeat, setModalPasswordRepeat] = useState('');
+const { createUser } = useContext(Context);
 
-const handleModalEmail = (e:ChangeEvent<HTMLInputElement>): void => {
-  setModalEmail(e.target.value)
+const [signUpEmail, setSignUpEmail] = useState('');
+const [signUpPassword, setSignUpPassword] = useState('');
+const [signUpPasswordRepeat, setSignUpPasswordRepeat] = useState('');
+
+const handleSignUpEmail = (e:ChangeEvent<HTMLInputElement>): void => {
+  setSignUpEmail(e.target.value)
 }
 
-const handleModalPassword = (e:ChangeEvent<HTMLInputElement>): void => {
-  setModalPassword(e.target.value)
+const handleSignUpPassword = (e:ChangeEvent<HTMLInputElement>): void => {
+  setSignUpPassword(e.target.value)
 }
 
-const handleModalPasswordRepeat = (e:ChangeEvent<HTMLInputElement>): void => {
-  setModalPasswordRepeat(e.target.value)
+const handleSignUpPasswordRepeat = (e:ChangeEvent<HTMLInputElement>): void => {
+  setSignUpPasswordRepeat(e.target.value)
 }
 
+const handleClick = (): void => {
+  signUpPassword === signUpPasswordRepeat ?  (createUser(signUpEmail, signUpPassword)) : (alert('passwords do not match'));
+}
 
 
   return (
     <div className='form'>
 
         <div className='form__group'>
-            <input className='form__input' type='email' placeholder='' value={modalEmail} onChange={handleModalEmail}/>
+            <input className='form__input' type='email' placeholder='' value={signUpEmail} onChange={handleSignUpEmail}/>
             <label className='form__label' htmlFor="">EMAIL</label>
         </div>
 
         <div className='form__group'>
-            <input className='form__input' type='password' placeholder='' value={modalPassword} onChange={handleModalPassword}/>
+            <input className='form__input' type='password' placeholder='' value={signUpPassword} onChange={handleSignUpPassword}/>
             <label className='form__label' htmlFor="">PASSWORD</label>
         </div>
 
         <div className='form__group'>
-            <input className='form__input' type='password' placeholder='' value={modalPasswordRepeat} onChange={handleModalPasswordRepeat}/>
+            <input className='form__input' type='password' placeholder='' value={signUpPasswordRepeat} onChange={handleSignUpPasswordRepeat}/>
             <label className='form__label' htmlFor="">REPEAT PASSWORD</label>
         </div>
 
         <div className='button__group'>
-        <button className='form__button'>SIGN UP</button>
+        <button className='form__button' onClick={handleClick}>SIGN UP</button>
         <button className='form__reg__button' onClick={()=>{isSignInHandler(true)}}>SIGN IN</button>
         </div>
     </div>
