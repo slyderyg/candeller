@@ -5,7 +5,7 @@ import Link from "next/link";
 import { navLinks } from "../utils/navLinks";
 
 const Navbar = () => {
-    const { modalHandler } = useContext(Context);
+    const { modalHandler, user, userSignOut } = useContext(Context);
   return (
     <header>
         <nav className="nav">
@@ -18,8 +18,15 @@ const Navbar = () => {
                     <ul>
                         <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
                         <li><Link className="nav__link" href="/">CART(0)</Link></li>
-                        <li><Link href="/">ACCOUNT</Link></li>
-                        <li onClick={()=>(modalHandler(true))}>SIGN IN</li>
+                        {user? (
+                            <>
+                            <li><Link href="/">ACCOUNT</Link></li>
+                            <li onClick={userSignOut}>SIGN OUT</li>
+                            </>
+                        ):(
+                            <li onClick={()=>(modalHandler(true))}>SIGN IN</li>
+                        )}
+                        
                     </ul>
                 </div>
                 
