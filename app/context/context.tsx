@@ -65,6 +65,7 @@ export const ContextProvider = ({children}: any) => {
     }
     //------------------------------------------------------------------------
 
+    //firebase function to sign in:
     const userSignIn = (email: string, password: string) => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -77,7 +78,7 @@ export const ContextProvider = ({children}: any) => {
     const errorMessage = error.message;
   });
     }
-
+    //------------------------------------------------------------------------
 
     return (<Context.Provider value={{
         modalActive, 
