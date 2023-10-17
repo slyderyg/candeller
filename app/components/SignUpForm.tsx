@@ -2,6 +2,7 @@
 
 import React, { FC, useState, ChangeEvent, useContext } from 'react';
 import { Context } from '../context/context';
+import { useInput } from '../utils/useInput';
 
 interface ModalProps {
   isSignInHandler: (isSignIn: boolean) => void;
@@ -11,24 +12,13 @@ const SignUpForm: FC<ModalProps> = ({ isSignInHandler }) => {
 
 const { createUser } = useContext(Context);
 
-const [signUpEmail, setSignUpEmail] = useState('');
-const [signUpPassword, setSignUpPassword] = useState('');
-const [signUpPasswordRepeat, setSignUpPasswordRepeat] = useState('');
+const signUpEmail = useInput('');
+const signUpPassword = useInput('');
+const signUpPasswordRepeat = useInput('');
 
-const handleSignUpEmail = (e:ChangeEvent<HTMLInputElement>): void => {
-  setSignUpEmail(e.target.value)
-}
-
-const handleSignUpPassword = (e:ChangeEvent<HTMLInputElement>): void => {
-  setSignUpPassword(e.target.value)
-}
-
-const handleSignUpPasswordRepeat = (e:ChangeEvent<HTMLInputElement>): void => {
-  setSignUpPasswordRepeat(e.target.value)
-}
 
 const handleClick = (): void => {
-  signUpPassword === signUpPasswordRepeat ?  (createUser(signUpEmail, signUpPassword)) : (alert('passwords do not match'));
+  createUser(signUpEmail.value, signUpPassword.value)
 }
 
 
@@ -36,17 +26,17 @@ const handleClick = (): void => {
     <div className='form'>
 
         <div className='form__group'>
-            <input className='form__input' type='email' placeholder='' value={signUpEmail} onChange={handleSignUpEmail}/>
+            <input className='form__input' type='email' placeholder='' value={signUpEmail.value} onChange={signUpEmail.handleInput}/>
             <label className='form__label' htmlFor="">EMAIL</label>
         </div>
 
         <div className='form__group'>
-            <input className='form__input' type='password' placeholder='' value={signUpPassword} onChange={handleSignUpPassword}/>
+            <input className='form__input' type='password' placeholder='' value={signUpPassword.value} onChange={signUpPassword.handleInput}/>
             <label className='form__label' htmlFor="">PASSWORD</label>
         </div>
 
         <div className='form__group'>
-            <input className='form__input' type='password' placeholder='' value={signUpPasswordRepeat} onChange={handleSignUpPasswordRepeat}/>
+            <input className='form__input' type='password' placeholder='' value={signUpPasswordRepeat.value} onChange={signUpPasswordRepeat.handleInput}/>
             <label className='form__label' htmlFor="">REPEAT PASSWORD</label>
         </div>
 
