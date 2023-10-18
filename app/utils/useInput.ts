@@ -2,7 +2,7 @@ import { useState, useEffect, ChangeEvent } from "react"
 
 export const useInput = (initialValue: string, validationType: string) => {
     const [value, setValue] = useState(initialValue);
-    const [emailError, setemailError] = useState('');
+    const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('')
     const [isDirty, setDirty] = useState(false);
 
@@ -19,8 +19,8 @@ export const useInput = (initialValue: string, validationType: string) => {
         case "email":
           const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           !re.test(value) && isDirty
-            ? setemailError('invalid email format')
-            : setemailError('');
+            ? setEmailError('invalid email format')
+            : setEmailError('');
           break;
         case "password":
           value.length < 6 && isDirty
@@ -36,7 +36,9 @@ export const useInput = (initialValue: string, validationType: string) => {
       emailError,
       onBlur,
       passwordError,
-      isDirty
+      isDirty,
+      setValue,
+      setDirty
     };
   };
 

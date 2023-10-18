@@ -227,3 +227,9 @@
     font-size: 12px;
     color: #da4949;
   }
+
+  .form__signInError {
+    margin-top: 12px;
+    color: #da4949;
+    font-size: 14px;
+  }

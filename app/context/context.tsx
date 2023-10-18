@@ -12,12 +12,17 @@ export const Context = createContext({
     createUser:  (email: string, password: string ): void => {},
     user: null,
     userSignOut:():void => {},
-    userSignIn: (email: string, password: string ): void => {}
+    userSignIn: (email: string, password: string ): void => {},
+    authError: ''
 });
 
 export const ContextProvider = ({children}: any) => {
-    //state for checking currently signed-in user:
+    //state to checking currently signed-in user:
     const [user, setUser] = useState<User | null>(null);
+    //------------------------------------------------------------------------
+
+    //state to show sign in error message:
+    const [authError, setAuthError] = useState('');
     //------------------------------------------------------------------------
 
     //Observer on the Auth object to get the current user:
@@ -50,6 +55,7 @@ export const ContextProvider = ({children}: any) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errorMessage);
       // ..
     });
     }
@@ -76,6 +82,8 @@ export const ContextProvider = ({children}: any) => {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    setAuthError(errorMessage);
+    console.log(errorMessage);
   });
     }
     //------------------------------------------------------------------------
@@ -88,7 +96,8 @@ export const ContextProvider = ({children}: any) => {
         createUser,
         user,
         userSignOut,
-        userSignIn
+        userSignIn,
+        authError
     }}>{ children }</Context.Provider>)
 }
 

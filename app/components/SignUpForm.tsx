@@ -18,7 +18,13 @@ const signUpPasswordRepeat = useInput("", "password");
 
 
 const handleClick = (): void => {
-  createUser(signUpEmail.value, signUpPassword.value)
+  createUser(signUpEmail.value, signUpPassword.value);
+  signUpEmail.setValue('');
+  signUpPassword.setValue('');
+  signUpPasswordRepeat.setValue('');
+  signUpEmail.setDirty(false);
+  signUpPassword.setDirty(false);
+  signUpPasswordRepeat.setDirty(false);
 }
 
 
@@ -43,6 +49,7 @@ const handleClick = (): void => {
         <div className='button__group'>
         <button className={signUpEmail.emailError || signUpPassword.passwordError || (signUpPasswordRepeat.value !== signUpPassword.value) || (signUpPassword.value.length<6)? 'form__button__error': 'form__button'} onClick={handleClick}>SIGN UP</button>
         <button className='form__reg__button' onClick={()=>{isSignInHandler(true)}}>SIGN IN</button>
+        
         </div>
         
     </div>

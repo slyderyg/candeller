@@ -2,6 +2,7 @@
 
 import React, { FC, useState, ChangeEvent, useContext } from 'react';
 import { Context } from '../context/context';
+import { useInput } from '../utils/useInput';
 
 interface ModalProps {
   isSignInHandler: (isSignIn: boolean) => void;
@@ -9,40 +10,38 @@ interface ModalProps {
 
 const SignInForm: FC<ModalProps> = ({ isSignInHandler }) => {
 
-  const { userSignIn } =useContext(Context);
+  const { userSignIn, authError } =useContext(Context);
 
-  const [modalEmail, setModalEmail] = useState('');
-  const [modalPassword, setModalPassword] = useState('');
+  const signInEmail = useInput('', 'email');
+  const signInPassword = useInput('', 'password');
 
-  const handleModalEmail = (e:ChangeEvent<HTMLInputElement>): void => {
-    setModalEmail(e.target.value)
-  }
-  
-  const handleModalPassword = (e:ChangeEvent<HTMLInputElement>): void => {
-    setModalPassword(e.target.value)
-  }
 
   const handleClick = ():void => {
-    userSignIn(modalEmail, modalPassword);
+    userSignIn(signInEmail.value, signInPassword.value);
   }
 
   return (
     <div className='form'>
 
         <div className='form__group'>
-            <input className='form__input' type='email' placeholder='' value={modalEmail} onChange={handleModalEmail}/>
-            <label className='form__label' htmlFor="">EMAIL</label>
+            <input className='form__input' type='email' placeholder='' value={signInEmail.value} onChange={signInEmail.onChange} onBlur={signInEmail.onBlur}/>
+            <label className={signInEmail.emailError? 'form__label__error' : 'form__label'} htmlFor="">{signInEmail.emailError? (signInEmail.emailError):('EMAIL')}</label>
         </div>
 
         <div className='form__group'>
-            <input className='form__input' type='password' placeholder='' value={modalPassword} onChange={handleModalPassword}/>
-            <label className='form__label' htmlFor="">PASSWORD</label>
+            <input className='form__input' type='password' placeholder='' value={signInPassword.value} onChange={signInPassword.onChange} onBlur={signInPassword.onBlur}/>
+            <label className={signInPassword.passwordError? 'form__label__error' : 'form__label'} htmlFor="">{signInPassword.passwordError? (signInPassword.passwordError):('PASSWORD')}</label>
         </div>
 
         <div className='button__group'>
-        <button className='form__button' onClick={handleClick}>SIGN IN</button>
+        <button className={signInEmail.value.length<1 || signInPassword.value.length<6 || signInEmail.emailError? 'form__button__error': 'form__button'} onClick={handleClick}>SIGN IN</button>
         <button className='form__reg__button' onClick={() =>{isSignInHandler(false)}}>SIGN UP</button>
         </div>
+
+        <div className='form__signInError'>
+          {authError}
+        </div>
+
     </div>
   )
 }
