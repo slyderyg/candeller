@@ -13,7 +13,9 @@ export const Context = createContext({
     user: null,
     userSignOut:():void => {},
     userSignIn: (email: string, password: string ): void => {},
-    authError: ''
+    authError: '',
+    isBurgerMenuActive: false,
+    handleBurger:():void => {}
 });
 
 export const ContextProvider = ({children}: any) => {
@@ -43,6 +45,13 @@ export const ContextProvider = ({children}: any) => {
     const [isSignIn, setIsSignIn] = useState(true);
     const isSignInHandler = (isSignIn: boolean):void => {setIsSignIn(isSignIn)};
     //------------------------------------------------------------------------
+
+    //burger menu show/hide state:
+    const [isBurgerMenuActive, setBurgerMenuActive] = useState(false);
+    const handleBurger = ():void => {
+      setBurgerMenuActive(!isBurgerMenuActive);
+    }
+
 
     //firebase function to create user:
     const createUser = (email: string, password: string) => {
@@ -97,7 +106,9 @@ export const ContextProvider = ({children}: any) => {
         user,
         userSignOut,
         userSignIn,
-        authError
+        authError,
+        isBurgerMenuActive,
+        handleBurger
     }}>{ children }</Context.Provider>)
 }
 
