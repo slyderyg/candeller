@@ -333,3 +333,41 @@
     color: #da4949;
     font-size: 14px;
   }
+
+  .account__h2 {
+    width: max-content;
+    margin: 50px auto;
+    font-family: 'Jost', sans-serif;
+  }
+
+  .slider {
+    width: 80%;
+    margin: 12px auto;
+    position: relative;
+  }
+
+  .slider__img {
+    width: 100%;
+  }
+
+  .slider__overlay {
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    background-color: white;
+    top: 30%;
+    left: 8%;
+  }
+
+  .slider__overlay__text {
+    width: 16vw;
+    font-family: 'Cormorant', serif;
+    font-size:3.4vw;
+    margin: 1vw auto;
+  }
+
+  .slider__overlay__button {
+    display: block;
+    width: 8.5vw;
+    height: 2vw;
+  }

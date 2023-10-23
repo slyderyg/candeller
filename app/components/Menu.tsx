@@ -16,7 +16,7 @@ const Menu = () => {
                         <li><Link href="/">CART(0)</Link></li>
                         {user? (
                             <>
-                            <li><Link href="/">ACCOUNT</Link></li>
+                            <li><Link href="/account">ACCOUNT</Link></li>
                             <li onClick={userSignOut}>SIGN OUT</li>
                             </>
                         ):(

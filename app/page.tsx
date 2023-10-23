@@ -8,6 +8,7 @@ import Modal from './components/Modal';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import Menu from './components/Menu';
+import Slider from './components/Slider';
 
 export default function Home() {
 
@@ -28,6 +29,7 @@ export default function Home() {
       </Modal>
       <Navbar />
       <Menu /> 
+      <Slider />
     </>
   )
 }
