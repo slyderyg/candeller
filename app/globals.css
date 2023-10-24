@@ -407,3 +407,39 @@
     background-color: rgb(255, 255, 255);
     cursor: pointer;
   }
+
+  .services {
+    width: 80%;
+    margin: 3vw auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .services__item {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .services__img {
+    width: 24px;
+    padding: 25px;
+  }
+
+  .services__item__text{
+    display: inline-block;
+  }
+
+  .services__heading {
+    font-family: 'Cormorant', sans-serif;
+    font-size: 1.3vw;
+    font-weight: 600;
+  }
+
+  .services__text {
+    font-family: 'Jost', sans-serif;
+    font-size: 1vw;
+  }
+
+

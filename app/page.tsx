@@ -9,6 +9,7 @@ import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import Menu from './components/Menu';
 import Slider from './components/Slider';
+import Services from './components/Services';
 
 export default function Home() {
 
@@ -30,6 +31,7 @@ export default function Home() {
       <Navbar />
       <Menu /> 
       <Slider />
+      <Services />
     </>
   )
 }

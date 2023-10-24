@@ -26,7 +26,7 @@ const Menu = () => {
                     </ul>
 
                     <ul>
-                        {navLinks.map(link => <li key={link.id}><Link href={link.href}>{link.name}</Link></li>)}
+                        {navLinks.map(link => <li key={link.id}><Link href={link.href} onClick={()=>{handleBurger()}}>{link.name}</Link></li>)}
                     </ul>
          
             </div>
