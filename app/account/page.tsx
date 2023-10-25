@@ -13,12 +13,13 @@ const page = () => {
     modalHandler, 
     isSignIn, 
     isSignInHandler,
-    user 
+    user,
+    handleAdmin
   } = useContext(Context);
 
-  console.log(user)
 
   return (
+    <>
     <div>
       <Navbar />
       <Modal modalActive={modalActive} modalHandler={modalHandler} isSignInHandler={isSignInHandler}>
@@ -41,6 +42,16 @@ const page = () => {
         )
       }
     </div>
+
+
+      <h3 className='account__h3'>Admin view:</h3>
+
+      <label className="switch">
+        <input type="checkbox" onChange={handleAdmin}/>
+        <span className="switch__slider round"></span>
+      </label>
+
+    </>
   )
 }
 

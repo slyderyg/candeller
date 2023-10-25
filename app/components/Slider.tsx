@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 
 const Slider = () => {
@@ -15,7 +16,7 @@ const Slider = () => {
         <div className='slider__overlay'>
             <div className='slider__overlay__text'>
                 {slide.color} <br /> CANDLE
-                <button className='slider__overlay__button'>SHOP NOW</button>
+                <Link href='/'>SHOP NOW</Link>
             </div>
         </div>
         <div className='slider__radio__button__group'>

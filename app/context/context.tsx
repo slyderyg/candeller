@@ -11,18 +11,27 @@ export const Context = createContext({
     isSignInHandler: (isSignIn: boolean):void => {},
     createUser:  (email: string, password: string ): void => {},
     user: null,
-    userSignOut:():void => {},
+    userSignOut: ():void => {},
     userSignIn: (email: string, password: string ): void => {},
     authError: '',
     isBurgerMenuActive: false,
-    handleBurger:():void => {}
+    handleBurger: ():void => {},
+    handleAdmin: ():void => {},
+    isAdmin: false
 });
 
 export const ContextProvider = ({children}: any) => {
     //state to checking currently signed-in user:
     const [user, setUser] = useState<User | null>(null);
     //------------------------------------------------------------------------
+    
+    //state to checking id user admin:
+    const [isAdmin, setAdmin] = useState(false);
+    const handleAdmin = () => {
+      setAdmin(!isAdmin);
+    }
 
+    //------------------------------------------------------------------------
     //state to show sign in error message:
     const [authError, setAuthError] = useState('');
     //------------------------------------------------------------------------
@@ -108,7 +117,9 @@ export const ContextProvider = ({children}: any) => {
         userSignIn,
         authError,
         isBurgerMenuActive,
-        handleBurger
+        handleBurger,
+        handleAdmin,
+        isAdmin
     }}>{ children }</Context.Provider>)
 }
 

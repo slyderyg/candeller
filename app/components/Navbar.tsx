@@ -5,7 +5,7 @@ import Link from "next/link";
 import { navLinks } from "../utils/navLinks";
 
 const Navbar = () => {
-    const { modalHandler, user, userSignOut, handleBurger } = useContext(Context);
+    const { modalHandler, user, userSignOut, handleBurger, isAdmin } = useContext(Context);
   return (
     <header>
         <nav className="nav">
@@ -42,6 +42,7 @@ const Navbar = () => {
             <div className="navbar">
                 <ul>
                     {navLinks.map(link => <li key={link.id}><Link className="navbar__link" href={link.href}>{link.name}</Link></li>)}
+                    {isAdmin? (<li><Link className="navbar__link" href='/dashboard'>DASHBOARD</Link></li>):(null)}
                 </ul>
             </div>
 
