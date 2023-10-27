@@ -14,12 +14,13 @@ const page = () => {
     isSignIn, 
     isSignInHandler,
     user,
+    isAdmin,
     handleAdmin
   } = useContext(Context);
 
 
   return (
-    <>
+ 
     <div>
       <Navbar />
       <Modal modalActive={modalActive} modalHandler={modalHandler} isSignInHandler={isSignInHandler}>
@@ -35,23 +36,16 @@ const page = () => {
             <h2 className='account__h2'>
             Welcome, {user.email}!
             </h2>
+            <button className={isAdmin? ('account__admin__view__button__on'):('account__admin__view__button')} onClick={handleAdmin}>ADMIN VIEW</button>
+
           </div>
         ):
         (
-          'You need to, sign in'
+          <h2 className='account__h2'>You need to, sign in!</h2>  
         )
       }
     </div>
 
-
-      <h3 className='account__h3'>Admin view:</h3>
-
-      <label className="switch">
-        <input type="checkbox" onChange={handleAdmin}/>
-        <span className="switch__slider round"></span>
-      </label>
-
-    </>
   )
 }
 

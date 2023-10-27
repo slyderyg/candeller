@@ -82,7 +82,7 @@ export const ContextProvider = ({children}: any) => {
     //firebase function to sign out:
     const userSignOut = () => {
         signOut(auth).then(() => {
-            // Sign-out successful.
+          setAdmin(false);
           }).catch((error) => {
             // An error happened.
           });

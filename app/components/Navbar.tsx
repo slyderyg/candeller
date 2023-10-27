@@ -3,6 +3,7 @@ import React, { useContext} from "react";
 import { Context } from "../context/context";
 import Link from "next/link";
 import { navLinks } from "../utils/navLinks";
+import { admLinks } from "../utils/admLinks";
 
 const Navbar = () => {
     const { modalHandler, user, userSignOut, handleBurger, isAdmin } = useContext(Context);
@@ -21,8 +22,13 @@ const Navbar = () => {
                 <div className="nav__top__right">
 
                     <ul>
-                        <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
-                        <li><Link className="nav__link" href="/">CART(0)</Link></li>
+                        {isAdmin? (null):(
+                            <>
+                                <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
+                                <li><Link className="nav__link" href="/">CART(0)</Link></li>
+                            </>
+                        )}
+
                         {user? (
                             <>
                             <li><Link href="/account">ACCOUNT</Link></li>
@@ -41,8 +47,8 @@ const Navbar = () => {
 
             <div className="navbar">
                 <ul>
-                    {navLinks.map(link => <li key={link.id}><Link className="navbar__link" href={link.href}>{link.name}</Link></li>)}
-                    {isAdmin? (<li><Link className="navbar__link" href='/dashboard'>DASHBOARD</Link></li>):(null)}
+                    {isAdmin? (admLinks.map(link => <li key={link.id}><Link className="navbar__link" href={link.href}>{link.name}</Link></li>)) :
+                    (navLinks.map(link => <li key={link.id}><Link className="navbar__link" href={link.href}>{link.name}</Link></li>))}
                 </ul>
             </div>
 
