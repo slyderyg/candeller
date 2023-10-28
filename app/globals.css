@@ -527,3 +527,8 @@
     display: block;
     margin: 0 auto;
   }
+
+  .product__uploader {
+    width: 364px;
+    margin: 3vw auto;
+  }
