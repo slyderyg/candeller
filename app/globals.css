@@ -532,3 +532,11 @@
     width: 364px;
     margin: 3vw auto;
   }
+
+  .loading__icon {
+    width: 50px;
+  }
+
+  .loading__icon img {
+    width: 50px;
+  }

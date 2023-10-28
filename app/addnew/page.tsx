@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent, useRef } from 'react'
 import Navbar from '../components/Navbar'
 import Menu from '../components/Menu';
 import { collection, addDoc } from 'firebase/firestore';
@@ -16,6 +16,12 @@ const page = () => {
   const [productCategory, setProductCategory] = useState('');
   const [imageUpload, setImageUpload] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const clearRef = useRef();
+
+  const reset = () => {
+        //@ts-ignore
+    clearRef.current.value = "";
+  };
   
   const handleProductName = (e:ChangeEvent<HTMLInputElement>):void => {
     setProductName(e.target.value)
@@ -76,8 +82,8 @@ const page = () => {
     setProductPrice('');
     setProductDescription('');
     setProductCategory('');
-    setImageUpload(null);
-
+    setImageUpload('');
+    reset();
   }
 
   return (
@@ -108,10 +114,14 @@ const page = () => {
               </datalist>
         </div>
         <div className='form__group'>
-              <input className='form__input' type='file' onChange={handleImageUpload} onBlur={()=>{}}/>
+              <input className='form__input' type='file' ref={clearRef} onChange={handleImageUpload}/>
         </div>
         <div className='button__group'>
-        <button className='form__button' onClick={handleClick}>+ UPLOAD</button>
+        {uploading? (<div className='loading__icon'><img src="/loading-icon.gif" alt="...loading" /></div>):(
+           <button className='form__button' onClick={handleClick}>+ UPLOAD</button>
+        )}
+       
+
         </div>
       </div>
     </div>
