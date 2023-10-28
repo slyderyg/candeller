@@ -5,8 +5,8 @@ interface AdmLink {
 }
 
 export const admLinks: AdmLink[] = [
-    {id: 1, name: 'MANAGE', href: '/manage'},
+    {id: 1, name: 'MANAGE', href: '/'},
     {id: 2, name: 'ADD NEW ITEM', href: '/addnew'},
-    {id: 3, name: 'ACTIVE ORDERS', href: '/active'},
-    {id: 4, name: 'COMPLETED ORDERS', href: '/completed'},
+    {id: 3, name: 'ACTIVE ORDERS', href: '/'},
+    {id: 4, name: 'COMPLETED ORDERS', href: '/'},
 ]
