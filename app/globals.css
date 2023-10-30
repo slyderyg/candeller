@@ -540,3 +540,65 @@
   .loading__icon img {
     width: 50px;
   }
+
+  .tab {
+    width: 80%;
+    margin: 4vw auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .tab__button__group {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+
+  .tab__button {
+    display: block;
+    width: 8.5vw;
+    height: 2vw;
+    margin-right: 1vw;
+    font-size: 0.8vw;
+    border: #2E2E2E 1px solid;
+    background-color: transparent;
+    color: #2E2E2E;
+    font-family: 'Jost', sans-serif;
+  }
+
+  .tab__items {
+    width: 100%;
+    margin-top: 3vw;
+    display: flex;
+    gap: 2.4vw;
+    flex-wrap: wrap;
+  }
+
+  .product__item {
+    width: 18vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1vw;
+  }
+
+  .product__item img {
+    width: 18vw;
+    display: block;
+  }
+
+  .product__item__name {
+    width: max-content;
+    font-family: 'Cormorant', serif;
+    font-size: 1.1vw;
+    margin-top: 1vw;
+    color: #2E2E2E;
+  }
+
+  .product__item__price {
+    width: max-content;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.1vw;
+    margin-top: 0.5vw;
+    color: #2E2E2E;
+  }
