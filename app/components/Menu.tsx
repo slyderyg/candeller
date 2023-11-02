@@ -15,14 +15,14 @@ const Menu = () => {
                     <ul>
                         {isAdmin? (null):(
                             <>
-                                <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
-                                <li><Link href="/">CART(0)</Link></li>
+                                <li onClick={()=>(handleBurger())}>SEARCH</li>
+                                <li onClick={()=>(handleBurger())}><Link href="/">CART(0)</Link></li>
                             </>
                         )}
 
                         {user? (
                             <>
-                            <li><Link href="/account">ACCOUNT</Link></li>
+                            <li><Link href="/account" onClick={()=>(handleBurger())}>ACCOUNT</Link></li>
                             <li onClick={userSignOut}>SIGN OUT</li>
                             </>
                         ):(
@@ -33,9 +33,9 @@ const Menu = () => {
 
                     <ul>
                         {isAdmin? (
-                            admLinks.map(link => <li key={link.id}><Link href={link.href} onClick={()=>{handleBurger()}}>{link.name}</Link></li>)
+                            admLinks.map(link => <li key={link.id} onClick={()=>{handleBurger()}}><Link href={link.href}>{link.name}</Link></li>)
                         ):(
-                            navLinks.map(link => <li key={link.id}><Link href={link.href} onClick={()=>{handleBurger()}}>{link.name}</Link></li>)
+                            navLinks.map(link => <li key={link.id} onClick={()=>{handleBurger()}}><Link href={link.href}>{link.name}</Link></li>)
                         )}
                     </ul>
          

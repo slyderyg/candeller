@@ -41,7 +41,7 @@ const page = () => {
           </div>
         ):
         (
-          <h2 className='account__h2'>You need to, sign in!</h2>  
+          <h2 className='account__h2'>This is a private rout!</h2>  
         )
       }
     </div>

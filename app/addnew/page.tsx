@@ -1,13 +1,12 @@
 'use client'
-import React, { useState, ChangeEvent, useRef } from 'react'
+import React, { useState, ChangeEvent, useRef, useContext } from 'react'
 import Navbar from '../components/Navbar'
 import Menu from '../components/Menu';
 import { collection, addDoc } from 'firebase/firestore';
 import { db, storage } from '../firebase';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from 'uuid';
-
-
+import { Context } from '../context/context';
 
 const page = () => {
   const [productName, setProductName] = useState('');
@@ -17,6 +16,7 @@ const page = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const [uploading, setUploading] = useState(false);
   const clearRef = useRef();
+  const { isAdmin } = useContext(Context);
 
   const reset = () => {
         //@ts-ignore
@@ -90,41 +90,52 @@ const page = () => {
     <>
     <Navbar />
     <Menu />
-    <div  className='product__uploader'>
-      <div className='form'>
-        <div className='form__group'>
-              <input className='form__input' type='text' placeholder='' value={productName} onChange={handleProductName}/>
-              <label className='form__label' htmlFor="">PRODUCT NAME</label>
-        </div>
-        <div className='form__group'>
-              <input className='form__input' type='number' placeholder='' value={productPrice} onChange={handleProductPrice}/>
-              <label className='form__label' htmlFor="">PRICE $</label>
-        </div>
-        <div className='form__group'>
-              <textarea className='form__input' placeholder='' value={productDescription} onChange={handleProductDescription}/>
-              <label className='form__label' htmlFor="">DESCRIPTION</label>
-        </div>
-        <div className='form__group'>
-              <input className='form__input' type='text' placeholder='' list='category' id='product-category' name='product-category' value={productCategory} onChange={handleProductCategory}/>
-              <label className='form__label' htmlFor="product-category">CATEGORY</label>
-              <datalist id='category'>
-                <option value="TIN"/>
-                <option value="CERAMIC"/>
-                <option value="DIFFUSERS"/>
-              </datalist>
-        </div>
-        <div className='form__group'>
-              <input className='form__input' type='file' ref={clearRef} onChange={handleImageUpload}/>
-        </div>
-        <div className='button__group'>
-        {uploading? (<div className='loading__icon'><img src="/loading-icon.gif" alt="...loading" /></div>):(
-           <button className='form__button' onClick={handleClick}>+ UPLOAD</button>
-        )}
-       
+    {isAdmin? 
+      <div  className='product__uploader'>
+
+        <div className='form'>
+
+          <div className='form__group'>
+                <input className='form__input' type='text' placeholder='' value={productName} onChange={handleProductName}/>
+                <label className='form__label' htmlFor="">PRODUCT NAME</label>
+          </div>
+
+          <div className='form__group'>
+                <input className='form__input' type='number' placeholder='' value={productPrice} onChange={handleProductPrice}/>
+                <label className='form__label' htmlFor="">PRICE $</label>
+          </div>
+
+          <div className='form__group'>
+                <textarea className='form__input' placeholder='' value={productDescription} onChange={handleProductDescription}/>
+                <label className='form__label' htmlFor="">DESCRIPTION</label>
+          </div>
+
+          <div className='form__group'>
+                <input className='form__input' type='text' placeholder='' list='category' id='product-category' name='product-category' value={productCategory} onChange={handleProductCategory}/>
+                <label className='form__label' htmlFor="product-category">CATEGORY</label>
+                <datalist id='category'>
+                  <option value="TIN"/>
+                  <option value="CERAMIC"/>
+                  <option value="DIFFUSERS"/>
+                </datalist>
+          </div>
+
+          <div className='form__group'>
+                <input className='form__input' type='file' ref={clearRef} onChange={handleImageUpload}/>
+          </div>
+
+          <div className='button__group'>
+          {uploading? (<div className='loading__icon'><img src="/loading-icon.gif" alt="...loading" /></div>):(
+            <button className='form__button' onClick={handleClick}>+ UPLOAD</button>
+          )}
+          </div>
 
         </div>
+
       </div>
-    </div>
+
+    : <h2 className='account__h2'>This is a private rout!</h2>}
+    
     </>
   )
 }
