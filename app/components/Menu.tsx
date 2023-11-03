@@ -6,7 +6,7 @@ import { navLinks } from "../utils/navLinks";
 import { admLinks } from "../utils/admLinks";
 
 const Menu = () => {
-    const { modalHandler, user, userSignOut, isBurgerMenuActive, handleBurger,isAdmin } = useContext(Context);
+    const { modalHandler, user, userSignOut, isBurgerMenuActive, handleBurger, isAdmin, cart } = useContext(Context);
 
   return (
     <div className={isBurgerMenuActive? 'menu' :'menu__disabled'}>
@@ -16,7 +16,7 @@ const Menu = () => {
                         {isAdmin? (null):(
                             <>
                                 <li onClick={()=>(handleBurger())}>SEARCH</li>
-                                <li onClick={()=>(handleBurger())}><Link href="/">CART(0)</Link></li>
+                                <li onClick={()=>(handleBurger())}><Link href="/">CART({cart.length})</Link></li>
                             </>
                         )}
 

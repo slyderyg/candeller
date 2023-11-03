@@ -53,7 +53,7 @@ const Tab = () => {
         <div className='tab__items'>
         {productItem.length > 0 ? 
           currentProduct.map(el => 
-            <ProductItem key={el.id} imageUrl={el.imageUrl} name={el.name} price={el.price}/>            
+            <ProductItem key={el.id} id={el.id} imageUrl={el.imageUrl} name={el.name} price={el.price}/>            
           ) : null}
 
 

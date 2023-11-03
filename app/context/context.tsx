@@ -17,7 +17,10 @@ export const Context = createContext({
     isBurgerMenuActive: false,
     handleBurger: ():void => {},
     handleAdmin: ():void => {},
-    isAdmin: false
+    isAdmin: false,
+    cart: [],
+    handleAddToCart: (id: string, name: string, imageUrl: string, price: string): void => {},
+    handleLocalStorageCart: (arr: []):void => {}
 });
 
 export const ContextProvider = ({children}: any) => {
@@ -61,12 +64,10 @@ export const ContextProvider = ({children}: any) => {
       setBurgerMenuActive(!isBurgerMenuActive);
     }
 
-
     //firebase function to create user:
     const createUser = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed up 
       const user = userCredential.user;
       setModalActive(false); 
     })
@@ -74,7 +75,6 @@ export const ContextProvider = ({children}: any) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage);
-      // ..
     });
     }
     //------------------------------------------------------------------------
@@ -84,7 +84,7 @@ export const ContextProvider = ({children}: any) => {
         signOut(auth).then(() => {
           setAdmin(false);
           }).catch((error) => {
-            // An error happened.
+            console.log(error);
           });
     }
     //------------------------------------------------------------------------
@@ -93,18 +93,34 @@ export const ContextProvider = ({children}: any) => {
     const userSignIn = (email: string, password: string) => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        setModalActive(false);
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setAuthError(errorMessage);
-    console.log(errorMessage);
-  });
+          const user = userCredential.user;
+          setModalActive(false);})
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setAuthError(errorMessage);
+          console.log(errorMessage);});
     }
     //------------------------------------------------------------------------
+
+    //state for shopping cart:
+    const [cart, setCart] = useState([]);
+    //------------------------------------------------------------------------
+  
+    //handler to add product to cart and set product to local storage :
+    const handleAddToCart = (id: string, name: string, imageUrl: string, price: string) => {
+      setCart([...cart, {id: id, name: name, imageUrl: imageUrl, price: price}]);
+      window.localStorage.setItem('cart', JSON.stringify([...cart, {id: id, name: name, imageUrl: imageUrl, price: price}]));
+    }
+    //------------------------------------------------------------------------
+
+    //handler to download cart from local storage:
+    const handleLocalStorageCart = (arr: []) => {
+      setCart(arr);
+    }
+    //------------------------------------------------------------------------
+
+
 
     return (<Context.Provider value={{
         modalActive, 
@@ -119,7 +135,10 @@ export const ContextProvider = ({children}: any) => {
         isBurgerMenuActive,
         handleBurger,
         handleAdmin,
-        isAdmin
+        isAdmin,
+        cart,
+        handleAddToCart,
+        handleLocalStorageCart
     }}>{ children }</Context.Provider>)
 }
 

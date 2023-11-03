@@ -1,12 +1,18 @@
 'use client';
-import React, { useContext} from "react";
+import React, { useContext, useEffect} from "react";
 import { Context } from "../context/context";
 import Link from "next/link";
 import { navLinks } from "../utils/navLinks";
 import { admLinks } from "../utils/admLinks";
 
 const Navbar = () => {
-    const { modalHandler, user, userSignOut, handleBurger, isAdmin } = useContext(Context);
+    const { modalHandler, user, userSignOut, handleBurger, isAdmin, cart, handleLocalStorageCart } = useContext(Context);
+
+    useEffect(()=>{
+        const localStorageCart = JSON.parse(window.localStorage.getItem('cart'));
+        window.localStorage.getItem('cart') && handleLocalStorageCart(localStorageCart)
+    }, [])
+
   return (
     <header>
         <nav className="nav">
@@ -25,7 +31,7 @@ const Navbar = () => {
                         {isAdmin? (null):(
                             <>
                                 <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
-                                <li><Link className="nav__link" href="/">CART(0)</Link></li>
+                                <li><Link className="nav__link" href="/">CART({cart.length})</Link></li>
                             </>
                         )}
 
