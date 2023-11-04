@@ -644,4 +644,104 @@
     transition: 0.3s;
     font-family: 'Jost', sans-serif;
     font-size: 0.8vw;
+    text-decoration: none;
+  }
+
+  .cart {
+    width: 80vw;
+    margin: 2vw auto;
+    display: flex;
+  }
+
+  .cart__total {
+    width: 18vw;
+    height: 12.25vw;
+    border:#2E2E2E solid 1px;
+    margin-top: 0.8vw;
+    margin-left: 2vw;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 3vw 2vw 2vw 2vw 2vw;
+    border-radius: 0.3vw;
+  }
+
+  .cart__list {
+    width: 60vw;
+  }
+
+  .cart__list__item {
+    width: 100%;
+    margin-top: 0.8vw;
+    display: flex;
+    border: #2E2E2E solid 1px;
+    border-radius: 0.3vw;
+  }
+
+  .cart__list__item img {
+    width: 10vw;
+    display: block;
+    margin: 1vw;
+  }
+
+  .cart__list__item p {
+    width: 35vw;
+    margin: 1vw;
+    font-family: 'Jost', sans-serif;
+    font-size: 1vw;
+    font-weight: bold;
+    color: #2E2E2E;
+  }
+
+  .cart__list__item__quantity {
+    width: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .cart__list__item__quantity button {
+    width: 1.3vw;
+    height: 1.3vw;
+    background-color: #4b4b4b;
+    border: none;
+    border-radius: 15%;
+    color: white;
+    font-size: 0.8vw;
+    cursor: pointer;
+  }
+
+  .cart__list__item__quantity input {
+    width: 2vw;
+    height: 1vw;
+    margin: 0.5vw;
+  }
+
+  .cart__total__header {
+    font-family: 'Jost', sans-serif;
+    font-size: 1vw;
+    font-weight: bold;
+    color: #2E2E2E;
+    padding-left: 1vw;
+    line-height: 300%;
+  }
+
+  .cart__total__item {
+    font-family: 'Jost', sans-serif;
+    font-size: 1vw;
+    color: #2E2E2E;
+    padding-left: 1vw;
+  }
+
+  .checkout__button {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    background-color: #2E2E2E;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-left: 1vw;
   }

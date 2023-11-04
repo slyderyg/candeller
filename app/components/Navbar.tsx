@@ -31,7 +31,7 @@ const Navbar = () => {
                         {isAdmin? (null):(
                             <>
                                 <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
-                                <li><Link className="nav__link" href="/">CART({cart.length})</Link></li>
+                                <li><Link className="nav__link" href="/cart">CART({cart.length})</Link></li>
                             </>
                         )}
 

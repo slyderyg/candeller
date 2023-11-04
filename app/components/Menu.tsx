@@ -16,7 +16,7 @@ const Menu = () => {
                         {isAdmin? (null):(
                             <>
                                 <li onClick={()=>(handleBurger())}>SEARCH</li>
-                                <li onClick={()=>(handleBurger())}><Link href="/">CART({cart.length})</Link></li>
+                                <li onClick={()=>(handleBurger())}><Link href="/cart">CART({cart.length})</Link></li>
                             </>
                         )}
 
