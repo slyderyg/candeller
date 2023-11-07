@@ -20,7 +20,11 @@ export const Context = createContext({
     isAdmin: false,
     cart: [],
     handleAddToCart: (id: string, name: string, imageUrl: string, price: string): void => {},
-    handleLocalStorageCart: (arr: []):void => {}
+    handleLocalStorageCart: (arr: []):void => {},
+    handleIncrement: (id: string):void => {},
+    handleDecrement: (id: string):void => {},
+    handleDelete: (id: string):void => {},
+    subtotal: 0
 });
 
 export const ContextProvider = ({children}: any) => {
@@ -109,8 +113,8 @@ export const ContextProvider = ({children}: any) => {
   
     //handler to add product to cart and set product to local storage :
     const handleAddToCart = (id: string, name: string, imageUrl: string, price: string) => {
-      setCart([...cart, {id: id, name: name, imageUrl: imageUrl, price: price}]);
-      window.localStorage.setItem('cart', JSON.stringify([...cart, {id: id, name: name, imageUrl: imageUrl, price: price}]));
+      setCart([...cart, {id: id, name: name, imageUrl: imageUrl, price: price, quantity: 1}]);
+      window.localStorage.setItem('cart', JSON.stringify([...cart, {id: id, name: name, imageUrl: imageUrl, price: price, quantity: 1}]));
     }
     //------------------------------------------------------------------------
 
@@ -119,6 +123,48 @@ export const ContextProvider = ({children}: any) => {
       setCart(arr);
     }
     //------------------------------------------------------------------------
+
+    //handler to increment product quantit in cart:
+    const handleIncrement = (id:string) => {
+      const index = cart.findIndex(el => el.id === id);
+      const newCart = [...cart];
+      newCart[index].quantity += 1;
+      setCart(newCart);
+      window.localStorage.setItem('cart', JSON.stringify(newCart));
+    }
+    //------------------------------------------------------------------------
+
+    //handler to decrement product quantit in cart:
+    const handleDecrement = (id:string) => {
+      const index = cart.findIndex(el => el.id === id);
+      const newCart = [...cart];
+      if (newCart[index].quantity > 1) {
+      newCart[index].quantity -= 1;
+      setCart(newCart);
+      window.localStorage.setItem('cart', JSON.stringify(newCart));
+      }
+    }
+    //------------------------------------------------------------------------
+    
+    //handler to delete product from cart:
+    const handleDelete = (id:string) => {
+      const newCart = cart.filter(el => el.id !== id);
+      setCart(newCart);
+      window.localStorage.setItem('cart', JSON.stringify(newCart));
+    }
+    //------------------------------------------------------------------------
+
+
+    //state to calculate subtotal price:
+    const [subtotal, setSubtotal] = useState(0);
+
+    useEffect(() => {
+      let subtotalPrice = 0;
+      cart.map(el => {subtotalPrice += Number(el.price)*el.quantity});
+      setSubtotal(subtotalPrice);
+    }, [cart]);
+    //------------------------------------------------------------------------
+
 
 
 
@@ -138,7 +184,11 @@ export const ContextProvider = ({children}: any) => {
         isAdmin,
         cart,
         handleAddToCart,
-        handleLocalStorageCart
+        handleLocalStorageCart,
+        handleIncrement,
+        handleDecrement,
+        handleDelete,
+        subtotal
     }}>{ children }</Context.Provider>)
 }
 

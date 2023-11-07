@@ -4,9 +4,12 @@ import { Context } from "../context/context";
 import Link from "next/link";
 import { navLinks } from "../utils/navLinks";
 import { admLinks } from "../utils/admLinks";
+import Modal from "./Modal";
+import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
 
 const Navbar = () => {
-    const { modalHandler, user, userSignOut, handleBurger, isAdmin, cart, handleLocalStorageCart } = useContext(Context);
+    const { modalHandler, user, userSignOut, handleBurger, isAdmin, cart, handleLocalStorageCart, modalActive,  isSignInHandler, isSignIn} = useContext(Context);
 
     useEffect(()=>{
         const localStorageCart = JSON.parse(window.localStorage.getItem('cart'));
@@ -15,6 +18,12 @@ const Navbar = () => {
 
   return (
     <header>
+        <Modal modalActive={modalActive} modalHandler={modalHandler} isSignInHandler={isSignInHandler}>
+        {isSignIn? 
+          (<SignInForm isSignInHandler={isSignInHandler}/>):
+          (<SignUpForm isSignInHandler={isSignInHandler}/>)
+        }
+      </Modal>
         <nav className="nav">
 
             <div className="nav__top">  

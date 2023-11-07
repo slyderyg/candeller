@@ -24,12 +24,6 @@ export default function Home() {
 
   return (
     <>
-      <Modal modalActive={modalActive} modalHandler={modalHandler} isSignInHandler={isSignInHandler}>
-        {isSignIn? 
-          (<SignInForm isSignInHandler={isSignInHandler}/>):
-          (<SignUpForm isSignInHandler={isSignInHandler}/>)
-        }
-      </Modal>
       <Navbar />
       <Menu /> 
       <Slider />
