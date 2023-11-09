@@ -43,15 +43,15 @@ const page = () => {
     <Navbar />
     <Menu />
     {isAdmin? 
-        <div className='active__orders'>
-        {orders.map(el => <div className='active__orders__item' key={el.id}>
-            <p className='active__orders__item__user'>Customer: {el.user}</p>
-            <ul className='active__orders__item__list'>
+        <div className='orders'>
+        {orders.map(el => <div className='orders__item' key={el.id}>
+            <p className='orders__item__user'>Customer: {el.user}</p>
+            <ul className='orders__item__list'>
                 {el.data.map((e: any) => <li key={e.id}>{e.name} x {e.quantity}</li>)}
             </ul>
-            <div className='active__orders__item__buttons'>
-                <button className='active__orders__item__button' onClick={()=> {newDoc(el.user, el.data); handleDelete(el.id)}}>COMPLETED</button>
-                <button className='active__orders__item__button' onClick={()=> handleDelete(el.id)}>DELETE</button>
+            <div className='orders__item__buttons'>
+                <button className='orders__item__button' onClick={()=> {newDoc(el.user, el.data); handleDelete(el.id)}}>COMPLETED</button>
+                <button className='orders__item__button' onClick={()=> handleDelete(el.id)}>DELETE</button>
             </div>
         </div>)} 
         </div>
