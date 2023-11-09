@@ -15,13 +15,6 @@ import Tab from './components/Tab';
 
 export default function Home() {
 
-  const { 
-    modalActive, 
-    modalHandler, 
-    isSignIn, 
-    isSignInHandler 
-  } = useContext(Context);
-
   return (
     <>
       <Navbar />

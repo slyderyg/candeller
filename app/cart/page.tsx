@@ -1,21 +1,28 @@
 'use client';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Menu from '../components/Menu';
 import { Context } from '../context/context';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import CartModal from '../components/CartModal';
 
 const page = () => {
-    const { cart, handleIncrement, handleDecrement, handleDelete, subtotal } = useContext(Context);
-
+    const { cart, handleIncrement, handleDecrement, handleDelete, handleClearCart, subtotal, user } = useContext(Context);
+    const [cartModalActive, setCartModalActive] = useState(false);
+    
+    const cartModalHandler = (isActive: boolean):void => {
+        setCartModalActive(isActive);
+    }
 
     async function newDoc() {
         try {
             const docRef = await addDoc(collection(db, "activeOrders"), {
-                data: JSON.stringify(cart)
+                data: cart,
+                user: user.email
             });
-            //добавить очистку корзины
+            handleClearCart();
+            cartModalHandler(true);
         } catch (e) {
           console.error("Error adding document: ", e);
         }
@@ -24,6 +31,7 @@ const page = () => {
 
   return (
     <>
+    <CartModal cartModalActive={cartModalActive} cartModalHandler={cartModalHandler}><p className='new__order__message'>New order succesfully created!</p></CartModal>
     <Navbar />
     <Menu />
     <div className='cart'>

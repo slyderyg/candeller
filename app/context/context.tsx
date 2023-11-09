@@ -24,7 +24,8 @@ export const Context = createContext({
     handleIncrement: (id: string):void => {},
     handleDecrement: (id: string):void => {},
     handleDelete: (id: string):void => {},
-    subtotal: 0
+    subtotal: 0,
+    handleClearCart: ():void => {}
 });
 
 export const ContextProvider = ({children}: any) => {
@@ -154,6 +155,12 @@ export const ContextProvider = ({children}: any) => {
     }
     //------------------------------------------------------------------------
 
+    //handler to clear cart after order:
+    const handleClearCart = () => {
+      setCart([]);
+      window.localStorage.setItem('cart', JSON.stringify([]));
+    }
+    //------------------------------------------------------------------------
 
     //state to calculate subtotal price:
     const [subtotal, setSubtotal] = useState(0);
@@ -188,7 +195,8 @@ export const ContextProvider = ({children}: any) => {
         handleIncrement,
         handleDecrement,
         handleDelete,
-        subtotal
+        subtotal,
+        handleClearCart
     }}>{ children }</Context.Provider>)
 }
 

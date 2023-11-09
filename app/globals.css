@@ -764,3 +764,14 @@
   .cart__xbutton:hover {
     transform: scale(1.5);
   }
+
+  .new__order__message {
+    display: block;
+    margin: 2vw auto;
+    padding: 2vw;
+    width: max-content;
+    height: max-content;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.7vw;
+    color: #2E2E2E;
+  }
