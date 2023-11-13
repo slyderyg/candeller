@@ -12,6 +12,7 @@ import Slider from './components/Slider';
 import Services from './components/Services';
 import AboutUs from './components/AboutUs';
 import Tab from './components/Tab';
+import ReviewSlider from './components/ReviewSlider';
 
 export default function Home() {
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Services />
       <AboutUs />
       <Tab />
+      <ReviewSlider />
     </>
   )
 }
