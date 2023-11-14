@@ -13,6 +13,8 @@ import Services from './components/Services';
 import AboutUs from './components/AboutUs';
 import Tab from './components/Tab';
 import ReviewSlider from './components/ReviewSlider';
+import Video from './components/Video';
+import Footer from './components/Footer';
 
 export default function Home() {
 
@@ -25,6 +27,8 @@ export default function Home() {
       <AboutUs />
       <Tab />
       <ReviewSlider />
+      <Video />
+      <Footer />
     </>
   )
 }
