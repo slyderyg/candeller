@@ -41,6 +41,10 @@ const Footer = () => {
 
         <div className="footer__bottom">
             <div className="footer__bottom__rectangle"></div>
+            <div className='footer__bottom__frame'>
+                <p>© Copyright 2023 Candeller.</p>
+                <p>Design by <span>TemplatesJungle</span></p>
+            </div>
         </div>
 
     </footer>

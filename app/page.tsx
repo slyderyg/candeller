@@ -15,6 +15,8 @@ import Tab from './components/Tab';
 import ReviewSlider from './components/ReviewSlider';
 import Video from './components/Video';
 import Footer from './components/Footer';
+import Blog from './components/Blog';
+import Newsletter from './components/Newsletter';
 
 export default function Home() {
 
@@ -28,6 +30,8 @@ export default function Home() {
       <Tab />
       <ReviewSlider />
       <Video />
+      <Blog />
+      <Newsletter />
       <Footer />
     </>
   )
