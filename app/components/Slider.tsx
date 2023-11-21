@@ -16,7 +16,7 @@ const Slider = () => {
         <div className='slider__overlay'>
             <div className='slider__overlay__text'>
                 {slide.color} <br /> CANDLE
-                <Link href='/'>SHOP NOW</Link>
+                <Link href='/shop'>SHOP NOW</Link>
             </div>
         </div>
         <div className='slider__radio__button__group'>
