@@ -39,7 +39,6 @@ const Navbar = () => {
                     <ul>
                         {isAdmin? (null):(
                             <>
-                                <li onClick={()=>(console.log('search button click'))}>SEARCH</li>
                                 <li><Link className="nav__link" href="/cart">CART({cart.length})</Link></li>
                             </>
                         )}

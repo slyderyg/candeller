@@ -449,7 +449,7 @@
 
   .about {
     width: 80%;
-    margin: 0 auto;
+    margin: 3vw auto;
     display: flex;
     justify-content: space-between;
   }
@@ -1164,5 +1164,20 @@
   }
 
   .newsletter__form__input {
+    font-size: 1vw;
+  }
+
+  .contact__info {
+    width: 80%;
+    margin: 2vw auto;
+    font-family: 'Jost', sans-serif;
+    color: #2E2E2E;
+  }
+
+  .contact__info__headers {
+    font-size: 1.5vw;
+  }
+
+  .contact__info__text {
     font-size: 1vw;
   }

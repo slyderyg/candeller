@@ -1,13 +1,15 @@
-import Link from 'next/link'
 import React from 'react'
+import Menu from '../components/Menu'
+import Navbar from '../components/Navbar'
+import Blog from '../components/Blog'
+import Footer from '../components/Footer'
 
-const Blog = () => {
+const page = () => {
   return (
-    <div className='blog'>
-      <div className='blog__title'>
-        <p>BLOG POSTS</p>
-        <Link href='/blog'>READ ARTICLES</Link>
-      </div>
+    <div>
+      <Navbar />
+      <Menu />
+      <div className='blog'>
       <div className='blog__posts'>
         <div className='blog__posts__article'>
           <img src="/post-item1.jpg" alt="" />
@@ -26,7 +28,9 @@ const Blog = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </div>
   )
 }
 
-export default Blog
+export default page
